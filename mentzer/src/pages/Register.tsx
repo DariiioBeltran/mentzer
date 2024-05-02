@@ -1,6 +1,11 @@
+import Layout from '../components/layout'
+import AuthForm from '../components/AuthForm';
+
 const Register = () => {
     return (
-        <div>Register</div>
+        <Layout>
+            <AuthForm route="/user/register/" method="register" />
+        </Layout>
     );
 }
 

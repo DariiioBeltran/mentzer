@@ -1,6 +1,10 @@
+import Layout from '../components/layout'
+
 const NotFound = () => {
     return (
-        <div>NotFound</div>
+        <Layout>
+            <div>NotFound</div>
+        </Layout>
     );
 }
 

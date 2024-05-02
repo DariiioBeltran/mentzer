@@ -4,7 +4,7 @@ import Layout from '../components/layout'
 export default function ProfilePage() {
     return (
         <Layout>
-            <p>Hello</p>
+            <p>Profile Page</p>
         </Layout>
     );
 }

@@ -1,6 +1,11 @@
+import Layout from '../components/layout'
+import AuthForm from '../components/AuthForm';
+
 const Login = () => {
     return (
-        <div>LOGIN</div>
+        <Layout>
+            <AuthForm route="/token/" method="login" />
+        </Layout>
     );
 }
 
