@@ -6,12 +6,14 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Home from "./pages/Home/Home";
-import Profile from "./pages/Profile";
-import NotFound from "./pages/NotFound";
-import ProtectedRoute from "./components/ProtectedRoute"
+import Login from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import Home from "./pages/Home/HomePage";
+import ProfilePage from "./pages/Profile/ProfilePage";
+import OutlinesPage from "./pages/Outlines/OutlinesPage";
+import StatsPage from "./pages/Stats/StatsPage";
+import NotFound from "./pages/NotFoundPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function Logout() {
   localStorage.clear();
@@ -20,7 +22,7 @@ function Logout() {
 
 function RegisterAndLogout() {
   localStorage.clear()
-  return <Register />
+  return <RegisterPage />
 }
 
 function App() {
@@ -38,7 +40,21 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<RegisterAndLogout />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        } />
+        <Route path="/outlines" element={
+          <ProtectedRoute>
+            <OutlinesPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/stats" element={
+          <ProtectedRoute>
+            <StatsPage />
+          </ProtectedRoute>
+        } />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
