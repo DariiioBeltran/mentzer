@@ -4,9 +4,6 @@ import api from "../api";
   
 export const postAuth = async (data: any, route: string) => {
     const res = await api.post(route, data);
-
-    // add transformers here if needed
-
     return res;
 };
 
