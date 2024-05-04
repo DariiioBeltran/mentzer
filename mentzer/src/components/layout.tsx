@@ -2,16 +2,19 @@ import React, { ReactNode } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-import ColorTabs from './colorTabs'
+import ColorTabs, { ColorTabsProps } from './colorTabs'
 
 interface LayoutProps {
-    children?: ReactNode;
+  route: string;
+  children?: ReactNode;
 }
 
 const Layout = (props: LayoutProps) => {
+  const colorTabsProps = { route: props.route } as ColorTabsProps
+
   return (
-    <div style={{ height: '100%' }}>
-        <ColorTabs />
+    <div style={{ height: "100vh", backgroundColor: "white" }}>
+        <ColorTabs {...colorTabsProps} />
         {props.children}
     </div>
   );

@@ -16,14 +16,10 @@ export function GymRatProvider(props: GymRatContextProviderProps) {
     useEffect(()=>{ 
         (async () => { 
             const resp = await api.get(`/gym_rats/${gymRatId}`)
-            console.log("LOGGING RESPONSE")
-            console.log(resp)
             const gym_rat = new GymRatModel(resp.data)
             setGymRat(gym_rat)
         })() 
     },[])
-
-    console.log(`GYM RAT: ${gymRat}`)
 
     const value = {
         gymRatData: gymRat?.gymRatData,

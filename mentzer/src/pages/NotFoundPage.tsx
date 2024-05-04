@@ -2,7 +2,7 @@ import Layout from '../components/layout'
 
 const NotFound = () => {
     return (
-        <Layout>
+        <Layout {...{ route: "/not-found/"}}>
             <div>NotFound</div>
         </Layout>
     );
