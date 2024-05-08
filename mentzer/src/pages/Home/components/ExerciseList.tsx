@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { useState } from "react";
 import Modal from '@mui/material/Modal';
+import Container from '@mui/material/Container';
 
 const modalStyle = {
     position: 'absolute' as 'absolute',
@@ -13,11 +14,11 @@ const modalStyle = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: "50%",
-    height: "75%",
+    height: "80%",
     border: '1px solid black',
     borderRadius: 1,
     backgroundColor: "white",
-  };
+};
 
 const ExerciseList = () => {
     const gymRat = useGymRatContext();
@@ -52,7 +53,19 @@ const ExerciseList = () => {
         <Box sx={{ border: 1, borderRadius: 1 }}>
             <h1 style={{ textAlign: "center" }}>Exercises</h1>
             {gymRat.workoutOutlines && <ScrollableCard items={parseExercises(gymRat.exercises)} />}
-            <Button variant="outlined" color="secondary" onClick={handleOpenModal}>Create more here you fuck</Button>
+            <Container>
+                <Button
+                    variant="outlined"
+                    color="secondary"
+                    onClick={handleOpenModal}
+                    sx={{
+                        width: "100%",
+                        mb: 2
+                    }}
+                >
+                    Create more here you fuck
+                </Button>
+            </Container>
             <Modal open={openModal} onClose={handleCloseModal}>
                 <div style={modalStyle}>
                     <CreateExerciseForm updateModalState={closeModalAtSubmit} />

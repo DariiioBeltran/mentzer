@@ -18,6 +18,8 @@ import Checkbox from '@mui/material/Checkbox';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormLabel from '@mui/material/FormLabel';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 
 export interface CreateExerciseFormProps {
     updateModalState: () => void;
@@ -86,6 +88,7 @@ const CreateExerciseForm = ({ updateModalState }: CreateExerciseFormProps) => {
                 <Stack spacing={2} sx={{ py: 2 }}>
                     <h1 style={{ textAlign: "center" }}>Create Exercise</h1>
                     <Divider />
+                    <Container>
                     <TextField 
                         id="outlined-basic" 
                         label="Exercise Name" 
@@ -93,42 +96,53 @@ const CreateExerciseForm = ({ updateModalState }: CreateExerciseFormProps) => {
                         type="text"
                         name="exerciseName"
                         value={inputData.exerciseName || ""}
-                        onChange={handleChange}   
+                        onChange={handleChange}
+                        sx={{ width: "100%", pb: 1 }}
                     />
-                    
-                    <FormLabel key="primary-muscle-groups">Primary Muscle Groups</FormLabel>
-                    <RadioGroup
-                        row
-                        name="primaryMuscleGroup"
-                        onChange={handleChange} 
+
+                    <Grid
+                        container
+                        spacing={2}
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="center"
                     >
-                        {FormattedMuslceGroups.map((pmg) => {
-                            return (
-                                <FormControlLabel 
-                                    value={pmg.value}
-                                    control={<Radio />} 
-                                    label={pmg.label}
-                                    key={`primaryMuscleGroup-${pmg.label}`}
-                                />
-                            )
-                        })}
-                    </RadioGroup>
-                    
-                    <FormLabel key="secondary-muscle-groups">Secondary Muscle Groups</FormLabel>
-                    <FormGroup>
-                        {FormattedMuslceGroups.map((smg, idx) => {
-                            return (
-                                <FormControlLabel 
-                                    control={<Checkbox 
-                                        onChange={handleSmgChange} 
-                                        name={smg.value}
-                                    />}
-                                    label={smg.label}
-                                    key={`secondaryMuscleGroup-${smg.label}`}
-                                />
-                            )
-                        })}
-                    </FormGroup>
+                        <Grid item xs={6}>
+                            <FormLabel key="primary-muscle-groups">Primary Muscle Groups</FormLabel>
+                            <RadioGroup
+                                name="primaryMuscleGroup"
+                                onChange={handleChange} 
+                            >
+                                {FormattedMuslceGroups.map((pmg) => {
+                                    return (
+                                        <FormControlLabel 
+                                            value={pmg.value}
+                                            control={<Radio />} 
+                                            label={pmg.label}
+                                            key={`primaryMuscleGroup-${pmg.label}`}
+                                        />
+                                    )
+                                })}
+                            </RadioGroup>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <FormLabel key="secondary-muscle-groups">Secondary Muscle Groups</FormLabel>
+                            <FormGroup>
+                                {FormattedMuslceGroups.map((smg, idx) => {
+                                    return (
+                                        <FormControlLabel 
+                                            control={<Checkbox 
+                                                onChange={handleSmgChange} 
+                                                name={smg.value}
+                                            />}
+                                            label={smg.label}
+                                            key={`secondaryMuscleGroup-${smg.label}`}
+                                        />
+                                    )
+                                })}
+                            </FormGroup>
+                        </Grid>
+                    </Grid>
 
                     <FormLabel key="exercise-scope">Exercise Scope</FormLabel>
                     <RadioGroup
@@ -165,9 +179,19 @@ const CreateExerciseForm = ({ updateModalState }: CreateExerciseFormProps) => {
                             )
                         })}
                     </RadioGroup>
+                    </Container>
 
                     <Divider />
-                    <Button variant="outlined" type="submit" color="secondary">Create Exercise</Button>
+                    <Container>
+                        <Button 
+                            variant="outlined" 
+                            type="submit" 
+                            color="secondary"
+                            sx={{ width: "100%" }}
+                        >
+                            Create Exercise
+                        </Button>
+                    </Container>
                 </Stack>
             </form>
         </Box>
