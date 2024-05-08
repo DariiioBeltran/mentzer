@@ -34,12 +34,12 @@ const ScrollableCard = ({ items }: ScrollableCardProps) => {
         >
             {items.map((item, idx) => {
                 return (
-                    <li key={`section-${item.name}`}>
+                    <li key={`section-${item.name}-${idx}`}>
                         <ul>
                             <p style={{ fontWeight: "bold", marginBottom: "2px", marginLeft: "12px" }}>{item.name}</p>
 
-                            {item.children && item.children.map((child) => (
-                                <ListItem key={`item-${item.name}-${idx}`} sx={{ py: 0.25, pl: 4 }}>{child}</ListItem>
+                            {item.children && item.children.map((child, idx2) => (
+                                <ListItem key={`item-${item.name}-${idx}-${child}-${idx2}`} sx={{ py: 0.25, pl: 4 }}>{child}</ListItem>
                             ))}
                             <Divider />
                         </ul>

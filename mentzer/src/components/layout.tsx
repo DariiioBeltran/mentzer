@@ -13,9 +13,9 @@ const Layout = (props: LayoutProps) => {
   const colorTabsProps = { route: props.route } as ColorTabsProps
 
   return (
-    <div style={{ height: "100vh", backgroundColor: "white" }}>
+    <div style={{ height: "100vh" }}>
         <ColorTabs {...colorTabsProps} />
-        {props.children}
+          {props.children}
     </div>
   );
 };

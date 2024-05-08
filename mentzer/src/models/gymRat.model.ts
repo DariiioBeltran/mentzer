@@ -1,11 +1,4 @@
-export interface NotionalExercise {
-    id: Number;
-    exercise_name: string;
-    primary_muscle_group: string;
-    secondary_muscle_groups?: string;
-    exercise_scope: string;
-    equipment_category: string;
-}
+import { NotionalExercise } from "./notionalExercise.model"
 
 export interface ExerciseOutline {
     id: Number;
