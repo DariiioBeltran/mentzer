@@ -1,20 +1,20 @@
-import Layout from '../components/layout'
-import LoginForm from '../components/LoginForm';
+import CreateExerciseForm from "./components/CreateExerciseForm"
+import Layout from '../../components/layout';
 import Box from '@mui/material/Box';
 
-const Login = () => {
+const ExercisePage = () => {
     return (
-        <Layout {...{ route: "/login/"}}>
+        <Layout route="/testExercises/">
             <Box
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
                 minHeight="80vh"
             >
-                <LoginForm />
+                <CreateExerciseForm />
             </Box>
         </Layout>
-    );
+    )
 }
 
-export default Login;
+export default ExercisePage;

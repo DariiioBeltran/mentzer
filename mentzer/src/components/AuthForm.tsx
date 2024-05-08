@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
-import { ACCESS_TOKEN, GYM_RAT_ID, REFRESH_TOKEN } from "../constants";
+import { ACCESS_TOKEN, GYM_RAT_ID, REFRESH_TOKEN } from "../constants/authConstants";
 
 interface AuthFormProps {
     route: string;

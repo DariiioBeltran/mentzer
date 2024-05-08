@@ -1,5 +1,5 @@
 import React, { ReactNode, useState, useEffect } from 'react';
-import { GYM_RAT_ID } from "../../constants";
+import { GYM_RAT_ID } from "../../constants/authConstants";
 import { GymRatModel } from "../../models/gymRat.model";
 import api from "../../api";
 import { GymRatContext, GymRatContextType } from "./GymRatContext";
@@ -13,6 +13,7 @@ export function GymRatProvider(props: GymRatContextProviderProps) {
     const gymRatId = localStorage.getItem(GYM_RAT_ID);
     const [gymRat, setGymRat] = useState<GymRatModel | undefined>(undefined);
 
+    // TODO: clean this up w/ a custom hook (see useGetAuth)
     useEffect(()=>{ 
         (async () => { 
             const resp = await api.get(`/gym_rats/${gymRatId}`)

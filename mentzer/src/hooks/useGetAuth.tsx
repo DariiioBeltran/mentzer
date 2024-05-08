@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import api from "../api";
 
-  
+
 export const postAuth = async (data: any, route: string) => {
     const res = await api.post(route, data);
     return res;
