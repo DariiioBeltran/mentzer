@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import {
   BrowserRouter,
@@ -11,7 +10,6 @@ import RegisterPage from "./pages/RegisterPage";
 import Home from "./pages/Home/HomePage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import OutlinesPage from "./pages/Outlines/OutlinesPage";
-import ExercisePage from "./pages/Home/testExercisePage";
 import StatsPage from "./pages/Stats/StatsPage";
 import NotFound from "./pages/NotFoundPage";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -56,16 +54,6 @@ function App() {
             <StatsPage />
           </ProtectedRoute>
         } />
-
-
-
-        <Route path="/testExercises" element={
-          <ProtectedRoute>
-            <ExercisePage />
-          </ProtectedRoute>
-        } />
-
-
 
         <Route path="*" element={<NotFound />} />
       </Routes>

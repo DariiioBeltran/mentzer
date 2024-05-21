@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, GYM_RAT_ID, REFRESH_TOKEN } from "../constants/authConstants";
 import { usePostAuth } from "../hooks/useGetAuth";
@@ -7,29 +6,12 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
+import { useFormik } from "formik";
 
 const LoginForm = () => {
-    const {
-        isLoading,
-        error,
-        data,
-        execute,
-    } = usePostAuth();
-
-    const [inputData, setInputData] = useState<any>({});
-    const navigate = useNavigate();
-
-    const handleChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const name = event.currentTarget.name;
-        const value = event.currentTarget.value;
-        setInputData((values: any) => ({...values, [name]: value}))
-    }
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
+    const onSubmit = async (values: any, actions: any) => {
         try {
-            const res = await execute({username: inputData.username, password: inputData.password}, "/token/")
+            const res = await execute({username: values.username, password: values.password}, "/token/")
             localStorage.setItem(ACCESS_TOKEN, res.data.access);
             localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
             localStorage.setItem(GYM_RAT_ID, res.data.id);
@@ -38,6 +20,27 @@ const LoginForm = () => {
             alert(error);
         }
     }
+
+    const {
+        isLoading,
+        error,
+        data,
+        execute,
+    } = usePostAuth();
+
+    const {
+        values,
+        handleChange,
+        handleSubmit,
+      } = useFormik({
+        initialValues: {
+          username: "",
+          password: "",
+        },
+        onSubmit,
+      });
+
+    const navigate = useNavigate();
 
     return (
         <Box sx={{ border: 1, borderRadius: 1, width: "50%" }}>
@@ -51,8 +54,8 @@ const LoginForm = () => {
                         variant="outlined" 
                         type="text"
                         name="username"
-                        value={inputData.username || ""}
-                        onChange={handleChange}   
+                        value={values.username}
+                        onChange={handleChange}
                     />
                     <TextField 
                         id="outlined-basic" 
@@ -60,7 +63,7 @@ const LoginForm = () => {
                         variant="outlined" 
                         type="password"
                         name="password"
-                        value={inputData.password || ""}
+                        value={values.password}
                         onChange={handleChange}
                     />
                     <Divider />

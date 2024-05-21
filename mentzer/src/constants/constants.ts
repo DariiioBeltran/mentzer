@@ -2,7 +2,7 @@ import {
     MuscleGroups,
     ExerciseScope,
     EquipmentCategory,
-} from "../../models/notionalExercise.model";
+} from "../models/notionalExercise.model";
 
 export const FormattedMuslceGroups = Object.freeze([
     {

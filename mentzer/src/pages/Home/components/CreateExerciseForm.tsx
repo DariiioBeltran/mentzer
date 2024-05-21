@@ -4,7 +4,7 @@ import {
     FormattedMuslceGroups,
     FormattedExerciseScope,
     FormattedEquipmentCategory,
-} from "../constants";
+} from "../../../constants/constants";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
