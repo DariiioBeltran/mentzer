@@ -1,19 +1,15 @@
 import TextField from '@mui/material/TextField';
 import { useFormik } from "formik";
-import Button from '@mui/material/Button';
 
-export interface Step1SubRequest {
-    workout_outline_name: string;
-}
-
-export interface Step1Props {
+export interface OutlineNameProps {
     localSubmit: (values: any) => void;
+    handleNext: () => void;
 }
 
-const Step1 = ({ localSubmit }: Step1Props) => {
+const OutlineName = ({ localSubmit, handleNext }: OutlineNameProps) => {
     const onSubmit = async (values: any, actions: any) => {
-        console.log(values)
-        localSubmit({ workout_outline_name: values.workoutOutlineName } as Step1SubRequest)
+        localSubmit(values.workoutOutlineName)
+        handleNext()
     }
 
     const {
@@ -28,7 +24,7 @@ const Step1 = ({ localSubmit }: Step1Props) => {
     });
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form id="form-step0" onSubmit={handleSubmit}>
             <TextField
                 id="outlined-basic"
                 label="Workout Name"
@@ -39,10 +35,8 @@ const Step1 = ({ localSubmit }: Step1Props) => {
                 onChange={handleChange}
                 style={{ width: "100%"}}
             />
-
-            <Button variant="outlined" type="submit" color="secondary">NEXT</Button>
         </form>
     )
 }
 
-export default Step1;
+export default OutlineName;

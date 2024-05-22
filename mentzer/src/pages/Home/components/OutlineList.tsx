@@ -27,7 +27,7 @@ const OutlineList = () => {
                 name: outline.workout_outline_name,
                 children: outline.exercise_outlines.map((eo) => {
                     return (
-                        `${eo.notional_exercise.exercise_name}: ${eo.number_of_sets} for ${eo.number_of_reps} reps`
+                        `${eo.notional_exercise.exercise_name}: ${eo.number_of_sets} sets of ${eo.number_of_reps} reps`
                     );
                 })
             });

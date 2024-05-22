@@ -7,21 +7,26 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useFormik } from "formik";
-import Button from '@mui/material/Button';
+import { ExerciseOutlineRequest } from "../../../hooks/useCreateOutline";
 
-export interface Step3SubRequest {
-    selected_exercises: NotionalExercise[];
-}
-
-export interface Step3Props {
+export interface SetsAndRepsTableProps {
     selectedExercises: NotionalExercise[];
     localSubmit: (values: any) => void;
+    handleNext: () => void;
 }
 
-const Step3 = ({ selectedExercises = [], localSubmit }: Step3Props) => {
+const SetsAndRepsTable = ({ selectedExercises = [], localSubmit, handleNext }: SetsAndRepsTableProps) => {
     const onSubmit = async (values: any, actions: any) => {
-        console.log(values)
-        localSubmit({} as Step3SubRequest)
+        const sanitizedValues = selectedExercises.map((ex) => {
+            return {
+                notional_exercise_id: ex.id, 
+                number_of_reps: values[`${ex.exercise_name}-reps`],
+                number_of_sets: values[`${ex.exercise_name}-sets`],
+            } as ExerciseOutlineRequest
+        });
+
+        localSubmit(sanitizedValues)
+        handleNext()
     }
 
     const {
@@ -29,14 +34,14 @@ const Step3 = ({ selectedExercises = [], localSubmit }: Step3Props) => {
         handleChange,
         handleSubmit,
     } = useFormik({
-        initialValues: selectedExercises.reduce((o, ex) => ({ ...o, [`${ex.exercise_name}-sets`]: 0, [`${ex.exercise_name}-reps`]: 0}), {}),
+        initialValues: selectedExercises.reduce((o, ex) => ({ ...o, [`${ex.exercise_name}-sets`]: "", [`${ex.exercise_name}-reps`]: ""}), {}),
         onSubmit,
     });
 
     return (
         <>
             {selectedExercises &&
-                <form onSubmit={handleSubmit}>
+                <form id="form-step2" onSubmit={handleSubmit}>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
@@ -76,13 +81,10 @@ const Step3 = ({ selectedExercises = [], localSubmit }: Step3Props) => {
                             </TableBody>
                         </Table>
                     </TableContainer>
-
-
-                    <Button variant="outlined" type="submit" color="secondary">NEXT</Button>
                 </form>
             }
         </>
     );
 }
 
-export default Step3;
+export default SetsAndRepsTable;

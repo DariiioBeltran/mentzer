@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
 import Layout from "../../components/layout"
-import CreateOutlineStepper from "./components/Stepper";
+import CreateOutlineStepper from "./components/CreateOutlineStepper";
 import { OutlineProvider } from "./OutlineProvider";
 
 const OutlinesPage = () => {

@@ -21,7 +21,7 @@ export const useCreateExercise = () => {
     const [error, setError] = useState<any>(null);
     const [data, setData] = useState<any>({});
 
-    const execute = async (data: any) => {
+    const execute = async (data: CreateExerciseRequest) => {
         try {
             setIsLoading(true);
             const res = await createExercise(data);

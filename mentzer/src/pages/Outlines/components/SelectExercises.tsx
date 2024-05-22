@@ -3,20 +3,17 @@ import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 import { NotionalExercise } from '../../../models/notionalExercise.model';
 import { useFormik } from "formik";
-import Button from '@mui/material/Button';
 
-export interface Step2SubRequest {
-    selected_exercises: NotionalExercise[];
-}
-
-export interface Step2Props {
+export interface SelectExercisesProps {
     exercises: NotionalExercise[];
     localSubmit: (values: any) => void;
+    handleNext: () => void;
 }
 
-const Step2 = ({ exercises, localSubmit }: Step2Props) => {
+const SelectExercises = ({ exercises, localSubmit, handleNext }: SelectExercisesProps) => {
     const onSubmit = (values: any, actions: any) => {
-        localSubmit({ selected_exercises: values.selectedExercises } as Step2SubRequest)
+        localSubmit(values.selectedExercises as NotionalExercise[])
+        handleNext()
     }
 
     const {
@@ -31,7 +28,7 @@ const Step2 = ({ exercises, localSubmit }: Step2Props) => {
     });
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form id="form-step1" onSubmit={handleSubmit}>
             {exercises && 
                 <Autocomplete
                     multiple
@@ -62,11 +59,8 @@ const Step2 = ({ exercises, localSubmit }: Step2Props) => {
                     )}
                 />
             }
-
-
-            <Button variant="outlined" type="submit" color="secondary">NEXT</Button>
         </form>
     );
 }
 
-export default Step2;
+export default SelectExercises;
