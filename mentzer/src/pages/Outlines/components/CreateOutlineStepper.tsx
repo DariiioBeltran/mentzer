@@ -19,7 +19,8 @@ import { NotionalExercise } from "../../../models/notionalExercise.model";
 
 // TODO:
 // 1. Fix this so the values of the forms persist when we return (maybe the key is to not make the child components forms?)
-// 2. Maybe add a review step where we prompt user to double check that everything looks correct?
+// 2. ADD VALIDATION
+// 3. Maybe add a review step where we prompt user to double check that everything looks correct?
 
 const CreateOutlineStepper = () => {
     const navigate = useNavigate();
