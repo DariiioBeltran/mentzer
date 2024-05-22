@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useEffect } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import { GYM_RAT_ID } from "../../constants/authConstants";
 import { GymRatModel } from "../../models/gymRat.model";
 import api from "../../api";

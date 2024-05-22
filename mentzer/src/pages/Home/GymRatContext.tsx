@@ -1,5 +1,6 @@
 import { useContext, createContext } from "react";
-import { GymRatData, NotionalExercise, WorkoutOutline } from "../../models/gymRat.model";
+import { GymRatData, WorkoutOutline } from "../../models/gymRat.model";
+import { NotionalExercise } from "../../models/notionalExercise.model";
 
 
 export interface GymRatContextType {

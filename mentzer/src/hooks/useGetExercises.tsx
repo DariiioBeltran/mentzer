@@ -2,29 +2,22 @@ import { useState } from 'react';
 import api from "../api";
 import { MuscleGroups, ExerciseScope, EquipmentCategory } from "../models/notionalExercise.model";
 
-export interface CreateExerciseRequest {
-    gym_rat: Number;
-    exercise_name: string;
-    primary_muscle_group: MuscleGroups;
-    secondary_muscle_groups: MuscleGroups[];
-    exercise_scope: ExerciseScope;
-    equipment_category: EquipmentCategory;
-}
 
-export const createExercise = async (data: CreateExerciseRequest) => {
-    const res = await api.post("/notional_exercise/", data);
+
+export const getExercises = async () => {
+    const res = await api.get("/notional_exercise/");
     return res;
 };
 
-export const useCreateExercise = () => {
+export const useGetExercises = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<any>(null);
     const [data, setData] = useState<any>({});
 
-    const execute = async (data: CreateExerciseRequest) => {
+    const execute = async () => {
         try {
             setIsLoading(true);
-            const res = await createExercise(data);
+            const res = await getExercises();
             setData(res);
             return res;
         } catch (e) {
