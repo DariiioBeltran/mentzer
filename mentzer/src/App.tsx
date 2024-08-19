@@ -11,6 +11,7 @@ import Home from "./pages/Home/HomePage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import OutlinesPage from "./pages/Outlines/OutlinesPage";
 import StatsPage from "./pages/Stats/StatsPage";
+import LoggingPage from "./pages/Logging/LoggingPage";
 import NotFound from "./pages/NotFoundPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -52,6 +53,11 @@ function App() {
         <Route path="/stats" element={
           <ProtectedRoute>
             <StatsPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/log/:id" element={
+          <ProtectedRoute>
+            <LoggingPage />
           </ProtectedRoute>
         } />
 

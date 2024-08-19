@@ -24,6 +24,7 @@ const OutlineList = () => {
                 return {name: outline.workout_outline_name, items: []}
             }
             return ({
+                id: outline.id,
                 name: outline.workout_outline_name,
                 children: outline.exercise_outlines.map((eo) => {
                     return (
@@ -37,7 +38,7 @@ const OutlineList = () => {
     }
 
     return (
-        <Box sx={{ border: 1, borderRadius: 1 }}>
+        <Box sx={{ border: 1 }}>
             <h1 style={{ textAlign: "center" }}>Workout Outlines</h1>
             {gymRat.workoutOutlines && <ScrollableCard items={parseWorkoutOutlines(gymRat.workoutOutlines)} />}
             <Container>
@@ -50,7 +51,7 @@ const OutlineList = () => {
                         mb: 2
                     }}
                 >
-                    Create more here you fuck
+                    Create MORE
                 </Button>
             </Container>
         </Box>

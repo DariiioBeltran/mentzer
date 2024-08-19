@@ -9,6 +9,7 @@ export interface ExerciseOutlineRequest {
 }
 
 export interface CreateOutlineRequest {
+    gym_rat: number;
     workout_outline_name: string;
     exercise_outlines: ExerciseOutlineRequest[]
 }

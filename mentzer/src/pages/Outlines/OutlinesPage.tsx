@@ -1,15 +1,12 @@
-import { Container } from "@mui/material";
 import Layout from "../../components/layout"
-import CreateOutlineStepper from "./components/CreateOutlineStepper";
 import { OutlineProvider } from "./OutlineProvider";
+import CreateOutlineFormContainer from "./components/CreateOutlineFormContainer";
 
 const OutlinesPage = () => {
     return (
         <OutlineProvider>
             <Layout {...{ route: "/outlines/"}}>
-                    <CreateOutlineStepper />
-                    {/* <CreateOutlineWizzard /> */}
-
+                <CreateOutlineFormContainer />
             </Layout>
         </OutlineProvider>
     );
