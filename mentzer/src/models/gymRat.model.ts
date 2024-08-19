@@ -3,7 +3,7 @@ import { NotionalExercise } from "./notionalExercise.model"
 export interface ExerciseOutline {
     id: Number;
     notional_exercise: NotionalExercise;
-    number_of_sets: Number;
+    number_of_sets: number;
     number_of_reps: Number;
 }
 

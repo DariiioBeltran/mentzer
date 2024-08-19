@@ -148,7 +148,7 @@ const CreateOutlineStepper = () => {
       </Stepper>
       {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>Is this fucking ready or what?</Typography>
+          <Typography>Is this ready or what cuz?</Typography>
           <Button onClick={handleGlobalSubmission} sx={{ mt: 1, mr: 1 }}>
             GLOBAL SUBMISSION
           </Button>

@@ -50,7 +50,7 @@ const ExerciseList = () => {
     }
 
     return (
-        <Box sx={{ border: 1, borderRadius: 1 }}>
+        <Box sx={{ border: 1 }}>
             <h1 style={{ textAlign: "center" }}>Exercises</h1>
             {gymRat.workoutOutlines && <ScrollableCard items={parseExercises(gymRat.exercises)} />}
             <Container>
@@ -63,7 +63,7 @@ const ExerciseList = () => {
                         mb: 2
                     }}
                 >
-                    Create more here you fuck
+                    Create MORE
                 </Button>
             </Container>
             <Modal open={openModal} onClose={handleCloseModal}>
