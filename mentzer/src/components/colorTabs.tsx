@@ -30,6 +30,7 @@ const ColorTabs = (props: ColorTabsProps) => {
         <Tab value="/outlines/" label="Outlines" />
         <Tab value="/stats/" label="stats" />
         <Tab value="/log/" label="Log" />
+        <Tab value="/records" label="Records" />
         <Tab value="/profile/" label="Profile (will remove this)" />
       </Tabs>
     </Box>

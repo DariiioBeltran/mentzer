@@ -1,20 +1,20 @@
 import { NotionalExercise } from "./notionalExercise.model"
 
 export interface ExerciseOutline {
-    id: Number;
+    id: number;
     notional_exercise: NotionalExercise;
     number_of_sets: number;
-    number_of_reps: Number;
+    number_of_reps: number;
 }
 
 export interface WorkoutOutline {
-    id: Number;
+    id: number;
     exercise_outlines: ExerciseOutline[];
     workout_outline_name: string;
 }
 
 export interface GymRatData {
-    id: Number;
+    id: number;
     username: string;
     first_name: string;
     last_name: string;

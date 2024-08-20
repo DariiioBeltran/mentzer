@@ -1,21 +1,20 @@
 import { useState } from 'react';
 import api from "../api";
 
-export const getOutlines = async (id?: number) => {
-    const url = id ? `/workout_outlines/${id}` : "/workout_outlines/"
-    const res = await api.get(url);
+export const getWorkoutRecords = async () => {
+    const res = await api.get("/workout_records/");
     return res;
 };
 
-export const useGetOutlines = () => {
+export const useGetWorkoutRecords = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<any>(null);
     const [data, setData] = useState<any>({});
 
-    const execute = async (id?: number) => {
+    const execute = async () => {
         try {
             setIsLoading(true);
-            const res = await getOutlines(id);
+            const res = await getWorkoutRecords();
             setData(res);
             return res;
         } catch (e) {
