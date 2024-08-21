@@ -51,7 +51,7 @@ function App() {
             <OutlinesPage />
           </ProtectedRoute>
         } />
-        <Route path="/stats" element={
+        <Route path="/stats/:notional_exercise_id" element={
           <ProtectedRoute>
             <StatsPage />
           </ProtectedRoute>

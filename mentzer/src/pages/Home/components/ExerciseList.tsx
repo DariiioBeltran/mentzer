@@ -37,6 +37,7 @@ const ExerciseList = () => {
 
         const parsedExercises = exercises.map((e) => {
             return ({
+                id: e.id,
                 name: e.exercise_name,
                 children: [
                     `Primary Muscle Group: ${e.primary_muscle_group.toLowerCase()}`,
@@ -52,7 +53,7 @@ const ExerciseList = () => {
     return (
         <Box sx={{ border: 1 }}>
             <h1 style={{ textAlign: "center" }}>Exercises</h1>
-            {gymRat.workoutOutlines && <ScrollableCard items={parseExercises(gymRat.exercises)} />}
+            {gymRat.workoutOutlines && <ScrollableCard baseUrl={"stats"} items={parseExercises(gymRat.exercises)} />}
             <Container>
                 <Button
                     variant="outlined"
