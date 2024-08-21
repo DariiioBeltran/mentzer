@@ -53,6 +53,11 @@ const RecordsRow = ({ record }: RecordsRowProps) => {
                                     <TableRow>
                                         <TableCell>
                                             <Typography variant="body1">
+                                                Set
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Typography variant="body1">
                                                 Exercise
                                             </Typography>
                                         </TableCell>
@@ -73,6 +78,11 @@ const RecordsRow = ({ record }: RecordsRowProps) => {
                                         let color = (set.reps_completed >= set.exercise_outline.number_of_reps) ? "green" : "red";
                                         return (
                                             <TableRow key={`setID-${set.id}-index-${index}`}>
+                                                <TableCell component="th" scope="row">
+                                                    <Typography variant="body2" color={color}>
+                                                        {index+1}
+                                                    </Typography>
+                                                </TableCell>
                                                 <TableCell component="th" scope="row">
                                                     <Typography variant="body2" color={color}>
                                                         {set.exercise_outline.notional_exercise.exercise_name}

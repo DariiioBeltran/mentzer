@@ -40,7 +40,7 @@ const OutlineList = () => {
     return (
         <Box sx={{ border: 1 }}>
             <h1 style={{ textAlign: "center" }}>Workout Outlines</h1>
-            {gymRat.workoutOutlines && <ScrollableCard items={parseWorkoutOutlines(gymRat.workoutOutlines)} />}
+            {gymRat.workoutOutlines && <ScrollableCard baseUrl={"log"} items={parseWorkoutOutlines(gymRat.workoutOutlines)} />}
             <Container>
                 <Button
                     variant="outlined"

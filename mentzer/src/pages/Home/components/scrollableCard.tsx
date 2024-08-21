@@ -10,10 +10,11 @@ export interface ScrollableCardItem {
 }
 
 export interface ScrollableCardProps {
+    baseUrl: string;
     items: ScrollableCardItem[]
 }
 
-const ScrollableCard = ({ items }: ScrollableCardProps) => {
+const ScrollableCard = ({ baseUrl, items }: ScrollableCardProps) => {
     if (!items) {
         return (<p>NOTHING HERE</p>)
     }
@@ -37,14 +38,11 @@ const ScrollableCard = ({ items }: ScrollableCardProps) => {
                 return (
                     <li key={`section-${item.name}-${idx}`}>
                         <ul>
-                            {(item.id) 
-                                ? <Link to={`/log/${item.id}`}>
-                                    <p style={{ fontWeight: "bold", marginBottom: "2px", marginLeft: "12px" }}>
-                                        {item.name}
-                                    </p>
-                                </Link>
-                                : <p style={{ fontWeight: "bold", marginBottom: "2px", marginLeft: "12px" }}>{item.name}</p>
-                            }
+                            <Link to={`/${baseUrl}/${item.id}`}>
+                                <p style={{ fontWeight: "bold", marginBottom: "2px", marginLeft: "12px" }}>
+                                    {item.name}
+                                </p>
+                            </Link>
 
                             {item.children && item.children.map((child, idx2) => (
                                 <ListItem key={`item-${item.name}-${idx}-${child}-${idx2}`} sx={{ py: 0.25, pl: 4 }}>{child}</ListItem>

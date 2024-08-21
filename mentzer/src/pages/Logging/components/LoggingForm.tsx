@@ -39,7 +39,7 @@ const LoggingForm = () => {
 
         for (let i = 0; i < exerciseOutline.number_of_sets; i++) {
             exerciseInitialValues[i] = {
-                exerciseId: exerciseOutline.notional_exercise.id,
+                exerciseId: exerciseOutline.id,
                 reps: "",
                 weight: "",
                 skipped: "",
