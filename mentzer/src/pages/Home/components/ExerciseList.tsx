@@ -1,33 +1,20 @@
 import { useGymRatContext } from "../GymRatContext";
 import ScrollableCard, { ScrollableCardItem } from "../components/scrollableCard";
 import { NotionalExercise } from "../../../models/notionalExercise.model";
-import CreateExerciseForm from "./CreateExerciseForm";
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { useState } from "react";
-import Modal from '@mui/material/Modal';
 import Container from '@mui/material/Container';
-
-const modalStyle = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: "50%",
-    height: "80%",
-    border: '1px solid black',
-    borderRadius: 1,
-    backgroundColor: "white",
-};
+import { useMediaQuery, useTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const ExerciseList = () => {
+    const theme = useTheme();
+    const isSmall = useMediaQuery(theme.breakpoints.down("sm"))
     const gymRat = useGymRatContext();
-    const [openModal, setOpenModal] = useState<boolean>(false)
-    const handleOpenModal = () => setOpenModal(true)
-    const handleCloseModal = () => setOpenModal(false)
+    const navigate = useNavigate();
 
-    const closeModalAtSubmit = () => {
-        setOpenModal(false)
+    const goToExercisesPage = () => {
+        navigate("/exercises/")
     }
 
     const parseExercises = (exercises: NotionalExercise[]): ScrollableCardItem[] => {
@@ -51,14 +38,24 @@ const ExerciseList = () => {
     }
 
     return (
-        <Box sx={{ border: 1 }}>
-            <h1 style={{ textAlign: "center" }}>Exercises</h1>
+        <Box
+            display="flex"
+            flexDirection="column"
+            sx={{
+                height: 1,
+                flexGrow: 1,
+                overflow: "auto",
+                border: isSmall ? 0 : 1, 
+                borderColor: theme.palette.primary.main,
+            }}
+        >
+            {!isSmall && <h1 style={{ textAlign: "center", color: theme.palette.primary.main }}>Exercises</h1>}
             {gymRat.workoutOutlines && <ScrollableCard baseUrl={"stats"} items={parseExercises(gymRat.exercises)} />}
             <Container>
                 <Button
                     variant="outlined"
-                    color="secondary"
-                    onClick={handleOpenModal}
+                    color="primary"
+                    onClick={goToExercisesPage}
                     sx={{
                         width: "100%",
                         mb: 2
@@ -67,11 +64,6 @@ const ExerciseList = () => {
                     Create MORE
                 </Button>
             </Container>
-            <Modal open={openModal} onClose={handleCloseModal}>
-                <div style={modalStyle}>
-                    <CreateExerciseForm updateModalState={closeModalAtSubmit} />
-                </div>
-            </Modal>
         </Box>
     );
 }

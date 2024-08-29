@@ -27,47 +27,50 @@ const RecordsRow = ({ record }: RecordsRowProps) => {
   
     return (
         <>
-            <TableRow sx={{ borderBottom: 'unset' }}>
+            <TableRow sx={{ borderBottom: 'unset', background: "black" }}>
                 <TableCell>
                     <IconButton
                         aria-label="expand row"
                         size="small"
                         onClick={() => setOpen(!open)}
+                        color="primary"
                     >
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </TableCell>
                 <TableCell component="th" scope="row">
-                    {record.workout_outline.workout_outline_name}
+                    <Typography color="textPrimary">
+                        {record.workout_outline.workout_outline_name}
+                    </Typography>
                 </TableCell>
             </TableRow>
             <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0, background: "black" }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
-                            <Typography variant="h6" gutterBottom component="div">
+                            <Typography variant="h6" gutterBottom component="div" color="textPrimary">
                                 Details
                             </Typography>
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>
-                                            <Typography variant="body1">
+                                            <Typography variant="body1" color="textPrimary">
                                                 Set
                                             </Typography>
                                         </TableCell>
                                         <TableCell>
-                                            <Typography variant="body1">
+                                            <Typography variant="body1" color="textPrimary">
                                                 Exercise
                                             </Typography>
                                         </TableCell>
                                         <TableCell>
-                                            <Typography variant="body1">
+                                            <Typography variant="body1" color="textPrimary">
                                                 Weight
                                             </Typography>
                                         </TableCell>
                                         <TableCell>
-                                            <Typography variant="body1">
+                                            <Typography variant="body1" color="textPrimary">
                                             Reps
                                             </Typography>
                                         </TableCell>
@@ -121,16 +124,39 @@ const RecordsTable = () => {
                 paddingTop: "10px",
             }}
         >
-            <h1>Last Two Weeks</h1>
-            <TableContainer component={Paper}>
-                <Table aria-label="collapsible table">
-                    <TableBody>
-                        {workoutRecords.records.map((record, index) => (
-                            <RecordsRow key={`recordId-${record.id}-index-${index}`} record={record} />
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            <Box
+                display="flex"
+                flexDirection="column"
+                height="85vh"
+                px={2}
+                sx={{ 
+                    background: "black", 
+                    overflow: "hidden",
+                    marginTop: 2,
+                }}
+            >
+                <Box display="flex" flexDirection="row" justifyContent="center" sx={{ borderBottom: 1 }}>
+                    <Typography variant="h4" color="textPrimary">
+                        Last Two Weeks
+                    </Typography>
+                </Box>
+                <Box
+                    sx={{
+                        flexGrow: 1,
+                        overflow: "auto"
+                    }}
+                >
+                    <TableContainer component={Paper}>
+                        <Table aria-label="collapsible table">
+                            <TableBody>
+                                {workoutRecords.records.map((record, index) => (
+                                    <RecordsRow key={`recordId-${record.id}-index-${index}`} record={record} />
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Box>
+            </Box>
         </Container>
     );
 }

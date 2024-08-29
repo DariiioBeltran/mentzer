@@ -1,5 +1,5 @@
 import { RecordsProvider } from "./RecordsProvider";
-import Layout from '../../components/layout';
+import Layout from '../../components/layout/layout';
 import RecordsTable from './components/recordsTable'
 
 

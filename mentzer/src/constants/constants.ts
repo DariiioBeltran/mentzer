@@ -64,3 +64,10 @@ export const FormattedEquipmentCategory = Object.freeze([
         value: EquipmentCategory.KETTLEBELL
     },
 ])
+
+export const enum NavigationEnum {
+    home = "",
+    outlines = "outlines",
+    records = "records",
+    profile = "profile",
+}

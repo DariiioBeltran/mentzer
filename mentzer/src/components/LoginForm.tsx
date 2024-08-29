@@ -43,7 +43,15 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     return (
-        <Box sx={{ border: 1, borderRadius: 1, width: "50%" }}>
+        <Box 
+            px={2}
+            sx={{ 
+                border: 1, 
+                borderRadius: 1, 
+                width: "50%",
+                background: "white"
+            }}
+        >
             <form onSubmit={handleSubmit}>
                 <Stack spacing={2} sx={{ py: 2 }}>
                     <h1 style={{ textAlign: "center" }}>Log In</h1>

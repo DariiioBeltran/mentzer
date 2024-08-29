@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import Layout from "../../components/layout";
+import Layout from "../../components/layout/layout";
 import { LoggingProvider } from "./LoggingProvider"
 import LoggingForm from "./components/LoggingForm";
 
