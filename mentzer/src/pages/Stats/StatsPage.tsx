@@ -1,4 +1,4 @@
-import Layout from "../../components/layout"
+import Layout from "../../components/layout/layout"
 import { useParams } from 'react-router-dom';
 import { StatsProvider } from "./StatsProvider"
 import ExerciseGraph from "./components/exerciseGraph";

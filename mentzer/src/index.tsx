@@ -3,13 +3,49 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      // main: "#ff8f00"
+      main: "#ffd6ff"
+    },
+    secondary: {
+      main: "#ffcc80"
+    },
+    text: {
+      primary: "#FFFFFF",
+      secondary: "#000000"
+    }
+  },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& label': {
+            color: '#ffd6ff', // Set label color
+          },
+          '& .MuiInput-underline:before': {
+            borderBottomColor: '#ffd6ff', // Set underline color
+          },
+          '& .MuiInputBase-input': {
+            color: '#ffd6ff', // Set text color
+          },
+        },
+      },
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
 );
 

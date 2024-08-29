@@ -5,8 +5,11 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 const OutlineList = () => {
+    const theme = useTheme();
+    const isSmall = useMediaQuery(theme.breakpoints.down("sm"))
     const gymRat = useGymRatContext();
     const navigate = useNavigate();
 
@@ -38,13 +41,23 @@ const OutlineList = () => {
     }
 
     return (
-        <Box sx={{ border: 1 }}>
-            <h1 style={{ textAlign: "center" }}>Workout Outlines</h1>
+        <Box
+            display="flex"
+            flexDirection="column"
+            sx={{
+                height: 1,
+                flexGrow: 1,
+                overflow: "auto",
+                border: isSmall ? 0 : 1,
+                borderColor: theme.palette.primary.main
+            }}
+        >
+            {!isSmall && <h1 style={{ textAlign: "center", color: theme.palette.primary.main }}>Workout Outlines</h1>}
             {gymRat.workoutOutlines && <ScrollableCard baseUrl={"log"} items={parseWorkoutOutlines(gymRat.workoutOutlines)} />}
             <Container>
                 <Button
                     variant="outlined"
-                    color="secondary"
+                    color="primary"
                     onClick={goToOutlinesPage}
                     sx={{
                         width: "100%",
