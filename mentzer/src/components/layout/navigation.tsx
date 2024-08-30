@@ -9,15 +9,19 @@ import { useState } from 'react';
 const navigationItems = [
     {
         label: "Home",
-        route: NavigationEnum.home
+        route: NavigationEnum.home,
     },
     {
-        label: "Create Outline",
-        route: NavigationEnum.outlines
+        label: "New Exercise",
+        route: NavigationEnum.exercises,
     },
     {
-        label: "Logs",
-        route: NavigationEnum.records
+        label: "New Outline",
+        route: NavigationEnum.outlines,
+    },
+    {
+        label: "History",
+        route: NavigationEnum.records,
     }
 ]
 
@@ -70,7 +74,7 @@ const Navigation = () => {
                             </IconButton>
                         </Toolbar>
                     </AppBar>
-                    <Box display="flex" flexDirection="column" py={3} width="100%">
+                    <Box display="flex" flexDirection="column" py={3} width="100%" height="100%" sx={{ background: "black" }}>
                         {navItemComponents}
                     </Box>
                 </Dialog>

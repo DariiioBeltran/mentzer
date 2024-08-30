@@ -3,54 +3,28 @@ import { GymRatProvider } from "./GymRatProvider";
 import OutlineList from "./components/OutlineList";
 import ExerciseList from "./components/ExerciseList";
 import Grid from '@mui/material/Grid';
-import { Container, useTheme, useMediaQuery, Hidden, Box, Tabs, Tab } from '@mui/material';
-import { useState } from 'react';
+import { Hidden, Box } from '@mui/material';
 import MobileHomePage from './MobileHomePage';
 
 const Home = () => {
-    const theme = useTheme();
-    const isSmall = useMediaQuery(theme.breakpoints.down("sm"))
-
     return (
         <GymRatProvider>
             <Layout route="/">
                 <Hidden smDown>
-                    <Grid container spacing={4}>
+                    <Grid 
+                        container 
+                        spacing={4} 
+                        direction="row" 
+                        sx={{
+                            justifyContent: "center",
+                            alignItems: "stretch",
+                        }}
+                    >
                         <Grid item md={6}>
-                            <Box
-                                display="flex"
-                                flexDirection="column"
-                                height="90vh"
-                                my={2}
-                                px={2}
-                            >
-                                <Box
-                                    sx={{
-                                        marginLeft: 2,
-                                        overflow: "auto"
-                                    }}
-                                >
-                                    <OutlineList />
-                                </Box>
-                            </Box>
+                            <OutlineList />
                         </Grid>
                         <Grid item md={6}>
-                            <Box
-                                display="flex"
-                                flexDirection="column"
-                                height="90vh"
-                                my={2}
-                                px={2}
-                            >
-                                <Box
-                                    sx={{
-                                        marginRight: 2,
-                                        overflow: "auto"
-                                    }}
-                                >
-                                    <ExerciseList />
-                                </Box>
-                            </Box>
+                            <ExerciseList />
                         </Grid>
                     </Grid>
                 </Hidden>

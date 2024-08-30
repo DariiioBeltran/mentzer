@@ -68,6 +68,7 @@ export const FormattedEquipmentCategory = Object.freeze([
 export const enum NavigationEnum {
     home = "",
     outlines = "outlines",
+    exercises = "exercises",
     records = "records",
     profile = "profile",
 }

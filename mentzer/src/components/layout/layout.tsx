@@ -14,10 +14,12 @@ const Layout = (props: LayoutProps) => {
 
   return (
     <Box 
+      display="flex"
+      flexDirection="column"
+      minHeight="100vh"
       sx={{
         background: "black",
-        height: "100vh",
-        backgroundPosition: 'center',
+        backgroundSize: "cover",
       }}
     >
       <AppBar position="fixed" sx={{ background: "black" }}>
@@ -33,7 +35,7 @@ const Layout = (props: LayoutProps) => {
       <Box>
         <Toolbar />
         {props.children}
-        {isSmall && <BasicSpeedDial />}
+        {/* {isSmall && <BasicSpeedDial />} */}
       </Box>
     </Box>
   );

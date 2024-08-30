@@ -1,7 +1,6 @@
 import { LineChart } from '@mui/x-charts/LineChart';
 import { useStatsContext } from "../StatsContext";
 import Container from '@mui/material/Container';
-import { c } from 'vite/dist/node/types.d-aGj9QkWt';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
@@ -47,7 +46,9 @@ const ExerciseGraph = () => {
                             />
                         </>
                     :
-                        <p>Have you been skipping these?</p>
+                        <Box display="flex" flexDirection="row" justifyContent="center" py={0}>
+                            <Typography variant="h4" color="primary">Have you been skipping these?</Typography>
+                        </Box>
                 }
             </Box>
         </Container>
