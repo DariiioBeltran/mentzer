@@ -15,6 +15,7 @@ import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
 import { useRecordsContext } from "../RecordsContext";
 import Container from "@mui/material/Container";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 
 interface RecordsRowProps {
@@ -115,49 +116,50 @@ const RecordsRow = ({ record }: RecordsRowProps) => {
 }
 
 const RecordsTable = () => {
+    const theme = useTheme();
+    const isSmall = useMediaQuery(theme.breakpoints.down("sm"))
     const workoutRecords = useRecordsContext();
     if (!workoutRecords.records) { return null; }
 
     return (
-        <Container
-            sx={{
-                paddingTop: "10px",
+        <Box
+            display="flex"
+            flexDirection="column"
+            py={2}
+            px={2}
+            mx={isSmall ? 2 : 6}
+            sx={{ 
+                background: "black", 
+                overflow: "hidden",
+                marginTop: 2,
+                marginBottom: 6,
+                border: 1,
+                borderColor: theme.palette.primary.main,
+                borderRadius: 2
             }}
         >
+            <Box display="flex" flexDirection="row" justifyContent="center" sx={{ borderBottom: 1 }}>
+                <Typography variant="h4" color="textPrimary">
+                    Last Two Weeks
+                </Typography>
+            </Box>
             <Box
-                display="flex"
-                flexDirection="column"
-                height="85vh"
-                px={2}
-                sx={{ 
-                    background: "black", 
-                    overflow: "hidden",
-                    marginTop: 2,
+                sx={{
+                    flexGrow: 1,
+                    overflow: "auto"
                 }}
             >
-                <Box display="flex" flexDirection="row" justifyContent="center" sx={{ borderBottom: 1 }}>
-                    <Typography variant="h4" color="textPrimary">
-                        Last Two Weeks
-                    </Typography>
-                </Box>
-                <Box
-                    sx={{
-                        flexGrow: 1,
-                        overflow: "auto"
-                    }}
-                >
-                    <TableContainer component={Paper}>
-                        <Table aria-label="collapsible table">
-                            <TableBody>
-                                {workoutRecords.records.map((record, index) => (
-                                    <RecordsRow key={`recordId-${record.id}-index-${index}`} record={record} />
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Box>
+                <TableContainer component={Paper}>
+                    <Table aria-label="collapsible table">
+                        <TableBody>
+                            {workoutRecords.records.map((record, index) => (
+                                <RecordsRow key={`recordId-${record.id}-index-${index}`} record={record} />
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </Box>
-        </Container>
+        </Box>
     );
 }
 

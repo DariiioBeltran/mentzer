@@ -90,156 +90,138 @@ const CreateOutlineFormContainer = () => {
 
     return (
         <Box
-            px={2}
+            height="100%"
+            width="100%"
             display="flex"
             justifyContent="center"
+            alignItems="center"
+            marginTop="20px"
+            marginBottom="20px"
         >
-            <Box
-                display="flex"
-                flexDirection="column"
-                justifyContent="center"
-                alignItems="center"
-                marginTop="20px"
-                height="650px"
-                sx={{
-                    background: "black",
-                    border: 1,
-                    borderColor: theme.palette.primary.main,
-                    width: "fit-content",
-                    overflow: "auto",
-                    overflowY: "scroll",
-                }}
-                py={2}
-                px={2}
-            >
-                <form onSubmit={handleSubmit}>
-                    <Stack spacing={2}>
-                        <Box display="flex" justifyContent="center" sx={{ borderBottom: 1 }}>
-                            <Typography variant="h3" sx={{ width: "fit-content" }} color="primary">
-                                Create Outline
-                            </Typography>
-                        </Box>
+            <form onSubmit={handleSubmit}>
+                <Stack 
+                    spacing={2}
+                    px={2}
+                    py={2}
+                    mx={2}
+                    sx={{
+                        border: 1,
+                        borderColor: theme.palette.primary.main,
+                        borderRadius: 2
+                    }}
+                >
+                    <Box display="flex" justifyContent="center" sx={{ borderBottom: 1 }}>
+                        <Typography variant="h3" sx={{ width: "fit-content" }} color="primary">
+                            Create Outline
+                        </Typography>
+                    </Box>
 
-                        {/* Number of Reps Field */}
-                        <Box
-                            sx={{
-                                border: 1,
-                                borderColor: theme.palette.primary.main,
-                                padding: 1
-                            }}
-                        >
-                            <TextField
-                                type="text"
-                                variant="standard"
-                                label="Outline Name"
-                                color="primary"
-                                name="workoutOutlineName"
-                                value={values.workoutOutlineName}
-                                onChange={handleChange}
-                                sx={{ 
-                                    width: "100%",
-                                }}
-                            />
-                        </Box>
-
-                        {values.exercises.map((exerciseOutline, index) => {
-                            return (
-                                <Box
-                                    sx={{
-                                        border: 1,
-                                        borderColor: theme.palette.primary.main,
-                                        padding: 1
-                                    }}
-                                    key={`box-${index}`}
-                                >
-                                    {/* Select Exercise Field */}
-                                    {exercises && <Autocomplete
-                                        id="tags-standard"
-                                        options={exercises}
-                                        getOptionLabel={(option) => option.exercise_name}
-                                        value={exerciseOutline.exerciseName}
-                                        color="primary"
-                                        onChange={(e, value) => {
-                                            const event = {...e, target: { ...e.target, name: `exercises.${index}.exerciseName`, value: value }};
-                                            handleChange(event);
-                                        }}
-                                        renderOption={(props, option) => {
-                                            return (
-                                                <li {...props} key={option.exercise_name}>
-                                                    <Typography sx={{ width: "fit-content" }} color="textSecondary">
-                                                        {option.exercise_name}
-                                                    </Typography>
-                                                </li>
-                                            );
-                                        }}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                type="text"
-                                                name={`exercises.${index}.exerciseName`}
-                                                variant="standard"
-                                                label="Select an Exercise"
-                                                color="primary"
-                                            />
-                                        )}
-                                    />}
-
-                                    {/* Number of Sets Field */}
-                                    <TextField
-                                        type="number"
-                                        variant="standard"
-                                        label="Sets"
-                                        color="primary"
-                                        name={`exercises.${index}.sets`}
-                                        value={exerciseOutline.sets}
-                                        onChange={handleChange}
-                                    />
-
-                                    {/* Number of Reps Field */}
-                                    <TextField
-                                        type="number"
-                                        variant="standard"
-                                        label="Reps"
-                                        color="primary"
-                                        name={`exercises.${index}.reps`}
-                                        value={exerciseOutline.reps}
-                                        onChange={handleChange}
-                                    />
-
-                                    {/* Remove Exercise */}
-                                    <IconButton
-                                        color="primary"
-                                        onClick={() => handleRemoveFields(index)}
-                                    >
-                                        <DeleteOutlineIcon />
-                                    </IconButton>
-                                </Box>
-                            )
-                        })}
-
-                        {/* Add Exercise */}
-                        <IconButton
+                    {/* Number of Reps Field */}
+                    <Box sx={{ padding: 1 }}>
+                        <TextField
+                            type="text"
+                            variant="standard"
+                            label="Outline Name"
                             color="primary"
-                            onClick={() => handleAddFields()}
-                        >
-                            <AddIcon />
-                        </IconButton>
-
-                        {/* Submit Form */}
-                        <Button
-                            variant="outlined"
-                            color="primary"
-                            type="submit" 
-                            sx={{
+                            name="workoutOutlineName"
+                            value={values.workoutOutlineName}
+                            onChange={handleChange}
+                            sx={{ 
                                 width: "100%",
-                                mb: 2,
                             }}
-                        >
-                            DONE!
-                        </Button>
-                    </Stack>
-                </form>
-            </Box>
+                        />
+                    </Box>
+
+                    {values.exercises.map((exerciseOutline, index) => {
+                        return (
+                            <Box sx={{ padding: 1 }} key={`box-${index}`}>
+                                {/* Select Exercise Field */}
+                                {exercises && <Autocomplete
+                                    id="tags-standard"
+                                    options={exercises}
+                                    getOptionLabel={(option) => option.exercise_name}
+                                    value={exerciseOutline.exerciseName}
+                                    color="primary"
+                                    onChange={(e, value) => {
+                                        const event = {...e, target: { ...e.target, name: `exercises.${index}.exerciseName`, value: value }};
+                                        handleChange(event);
+                                    }}
+                                    renderOption={(props, option) => {
+                                        return (
+                                            <li {...props} key={option.exercise_name}>
+                                                <Typography sx={{ width: "fit-content" }} color="textSecondary">
+                                                    {option.exercise_name}
+                                                </Typography>
+                                            </li>
+                                        );
+                                    }}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            type="text"
+                                            name={`exercises.${index}.exerciseName`}
+                                            variant="standard"
+                                            label="Select an Exercise"
+                                            color="primary"
+                                        />
+                                    )}
+                                />}
+
+                                {/* Number of Sets Field */}
+                                <TextField
+                                    type="number"
+                                    variant="standard"
+                                    label="Sets"
+                                    color="primary"
+                                    name={`exercises.${index}.sets`}
+                                    value={exerciseOutline.sets}
+                                    onChange={handleChange}
+                                />
+
+                                {/* Number of Reps Field */}
+                                <TextField
+                                    type="number"
+                                    variant="standard"
+                                    label="Reps"
+                                    color="primary"
+                                    name={`exercises.${index}.reps`}
+                                    value={exerciseOutline.reps}
+                                    onChange={handleChange}
+                                />
+
+                                {/* Remove Exercise */}
+                                <IconButton
+                                    color="primary"
+                                    onClick={() => handleRemoveFields(index)}
+                                >
+                                    <DeleteOutlineIcon />
+                                </IconButton>
+                            </Box>
+                        )
+                    })}
+
+                    {/* Add Exercise */}
+                    <IconButton
+                        color="primary"
+                        onClick={() => handleAddFields()}
+                    >
+                        <AddIcon />
+                    </IconButton>
+
+                    {/* Submit Form */}
+                    <Button
+                        variant="outlined"
+                        color="primary"
+                        type="submit" 
+                        sx={{
+                            width: "100%",
+                            mb: 2,
+                        }}
+                    >
+                        DONE!
+                    </Button>
+                </Stack>
+            </form>
         </Box>
     )
 }

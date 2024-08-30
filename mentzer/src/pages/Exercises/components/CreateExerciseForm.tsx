@@ -50,7 +50,6 @@ const CreateOutlineFormContainer = () => {
     const onSubmit = async (values: any, actions: any) => {
         try {
             const req = formatRequestFromFormData(values)
-            console.log(values)
             const res = await execute(req)
             navigate("/")
         } catch (error) {
@@ -96,6 +95,7 @@ const CreateOutlineFormContainer = () => {
                     background: "black",
                     border: 1,
                     borderColor: theme.palette.primary.main,
+                    borderRadius: 2,
                     width: "fit-content",
                     overflow: "auto",
                     overflowY: "scroll",
@@ -104,6 +104,7 @@ const CreateOutlineFormContainer = () => {
                 }}
                 py={2}
                 px={2}
+                mx={2}
             >
                 <form onSubmit={handleSubmit}>
                     <Stack spacing={2}>

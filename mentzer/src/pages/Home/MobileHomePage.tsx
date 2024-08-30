@@ -22,8 +22,8 @@ interface TabPanelProps {
         {...other}
       >
         {value === index && (
-          <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
+          <Box sx={{ p: 3, background: "black" }}>
+            <Typography component={'div'}>{children}</Typography>
           </Box>
         )}
       </div>
@@ -39,94 +39,44 @@ interface TabPanelProps {
 
 const MobileHomePage = () => {
     const theme = useTheme();
-    const [tab, setTab] = useState("workouts");
+    const [value, setValue] = useState(0);
 
-    const handleTabChange = (event: any, value: any) => {
-        setTab(value);
+    const handleTabChange = (event: any, newValue: any) => {
+        setValue(newValue);
     }
 
-    const handleClick = () => {
-        console.info('You clicked the Chip.');
-      };
-
     return (
-        <Box sx={{ height: "100vh" }}>
-            <Box
-                display="flex"
-                flexDirection="row"
-                justifyContent="center"
-                sx={{
-                    // paddingTop: 4,
-                    background: "purple"
-                }}
-                my={4}
-            >
-                <AppBar position="static">
-                    <Tabs
-                        value={tab}
-                        onChange={handleTabChange}
-                        indicatorColor="secondary"
-                        textColor="inherit"
-                        variant="fullWidth"
-                        aria-label="full width tabs example"
-                    >
-                        <Tab label="Item One" />
-                        <Tab label="Item Two" />
-                    </Tabs>
-                    <TabPanel value={0} index={0} dir={theme.direction}></TabPanel>
-                    <TabPanel value={1} index={1} dir={theme.direction}></TabPanel>
-                </AppBar>
-            </Box>
-
-
-            
-        </Box>
-        // <Box
-        //     display="flex"
-        //     flexDirection="column"
-        //     height="85vh"
-        //     mx={2}
-        //     px={2}
-        //     sx={{ 
-        //         background: "white", 
-        //         overflow: "auto",
-        //         marginTop: 2,
-        //     }}
-        // >
-        //     <Box sx={{ flexGrow: 1 }}>
-        //         <Tabs
-        //             value={tab}
-        //             onChange={handleTabChange}
-        //             textColor="secondary"
-        //             indicatorColor="secondary"
-        //             aria-label="secondary tabs example"
-        //             variant="fullWidth"
-        //             sx={{
-        //                 marginBottom: 0,
-        //                 paddingBottom: 0,
-        //             }}
-        //         >
-        //             <Tab value="workouts" label="Workouts" />
-        //             <Tab value="exercises" label="Exercises" />
-        //         </Tabs>
-        //         <Box
-        //             display="flex"
-        //             flexDirection="column"
-        //             height="100vh"
-        //         >
-        //             <Box
-        //                 sx={{
-        //                     overflow: "auto"
-        //                 }}
-        //             >
-        //                 {(tab === "workouts")
-        //                     ? <OutlineList />
-        //                     : <ExerciseList />
-        //                 }
-        //             </Box>
-        //         </Box>
-        //     </Box>
-        // </Box>
+      <Box sx={{ height: "100vh", backgrorund: "black " }}>
+          <Box
+              display="flex"
+              flexDirection="row"
+              justifyContent="center"
+          >
+              <AppBar position="static">
+                  <Tabs
+                      value={value}
+                      onChange={handleTabChange}
+                      indicatorColor="secondary"
+                      textColor="inherit"
+                      variant="fullWidth"
+                      aria-label="full width tabs example"
+                      sx={{
+                        paddingBottom: 0,
+                        marginBottom: 0,
+                      }}
+                  >
+                      <Tab label="Outlines" />
+                      <Tab label="Exercises" />
+                  </Tabs>
+                  <TabPanel value={value} index={0} dir={theme.direction}>
+                    <OutlineList />
+                  </TabPanel>
+                  <TabPanel value={value} index={1} dir={theme.direction}>
+                    <ExerciseList />
+                  </TabPanel>
+              </AppBar>
+          </Box>
+      </Box>
     )
 }
 

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Layout from "../../components/layout/layout";
 import { LoggingProvider } from "./LoggingProvider"
-import LoggingForm from "./components/LoggingForm";
+import LoggingFormContainer from "./components/LoggingForm";
 
 
 const LoggingPage = () => {
@@ -11,7 +11,7 @@ const LoggingPage = () => {
     return (
         <LoggingProvider id={parseInt(id)}>
             <Layout {...{ route: "/log/"}}>
-                <LoggingForm />
+                <LoggingFormContainer />
             </Layout>
         </LoggingProvider>
     )

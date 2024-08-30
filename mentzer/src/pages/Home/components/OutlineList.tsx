@@ -49,7 +49,8 @@ const OutlineList = () => {
                 flexGrow: 1,
                 overflow: "auto",
                 border: isSmall ? 0 : 1,
-                borderColor: theme.palette.primary.main
+                borderColor: theme.palette.primary.main,
+                borderRadius: 2
             }}
         >
             {!isSmall && <h1 style={{ textAlign: "center", color: theme.palette.primary.main }}>Workout Outlines</h1>}
