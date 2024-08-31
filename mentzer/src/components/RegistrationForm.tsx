@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { usePostAuth } from "../hooks/useGetAuth";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -7,8 +7,11 @@ import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import { useFormik } from "formik";
 import { registrationFormSchema } from "../formSchemas/registrationFormSchema";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 const RegistrationForm = () => {
+    const theme = useTheme();
+    const isSmall = useMediaQuery(theme.breakpoints.down("sm"))
     const onSubmit = async (values: any, actions: any) => {
         try {
             const req = {
@@ -55,21 +58,42 @@ const RegistrationForm = () => {
     const navigate = useNavigate();
 
     return (
-        <form onSubmit={handleSubmit}>
-            <Grid
-                container
-                spacing={2}
-                direction="row"
-                alignItems="center"
+        <Box 
+            width="100%" 
+            height="100%"
+            display="flex"
+            justifyContent="center"
+        >
+            <Box
+                display="flex"
+                flexDirection="column"
                 justifyContent="center"
-                style={{ minWidth: '75%' }}
+                alignItems="center"
+                marginTop="20px"
+                sx={{
+                    background: "black",
+                    border: 1,
+                    borderColor: theme.palette.primary.main,
+                    borderRadius: 2,
+                    width: "fit-content",
+                    overflow: "auto",
+                    overflowY: "scroll",
+                    marginTop: 2,
+                    marginBottom: 2,
+                }}
+                py={2}
+                px={2}
+                mx={2}
             >
-                <Grid item xs={6}>
-                    <Stack spacing={2}>
-                        <h1 style={{ textAlign: "center" }}>Register</h1>
+                <form onSubmit={handleSubmit}>
+                    <Stack spacing={2} px={2} py={2}>
+                        <Box display="flex" justifyContent="center" sx={{ borderBottom: 1, borderColor: theme.palette.primary.main, paddingBottom: 2 }}>
+                            <Typography variant="h3" sx={{ width: "fit-content" }} color="primary">
+                                Sign Up
+                            </Typography>
+                        </Box>
                         <Divider />
                         <TextField 
-                            id="outlined-basic" 
                             variant="outlined"
                             label="First Name" 
                             type="text"
@@ -80,7 +104,6 @@ const RegistrationForm = () => {
                         />
                         {errors.firstName && touched.firstName && <p style={{ color: "red" }}>{errors.firstName}</p>}
                         <TextField 
-                            id="outlined-basic" 
                             variant="outlined"
                             label="Last Name" 
                             type="text"
@@ -91,9 +114,8 @@ const RegistrationForm = () => {
                         />
                         {errors.lastName && touched.lastName && <p style={{ color: "red" }}>{errors.lastName}</p>}
                         <TextField 
-                            id="outlined-basic" 
                             variant="outlined"
-                            label="email" 
+                            label="Email" 
                             type="text"
                             name="email"
                             value={values.email}
@@ -102,7 +124,6 @@ const RegistrationForm = () => {
                         />
                         {errors.email && touched.email && <p style={{ color: "red" }}>{errors.email}</p>}
                         <TextField 
-                            id="outlined-basic" 
                             variant="outlined"
                             label="Username" 
                             type="text"
@@ -113,7 +134,6 @@ const RegistrationForm = () => {
                         />
                         {errors.username && touched.username && <p style={{ color: "red" }}>{errors.username}</p>}
                         <TextField 
-                            id="outlined-basic" 
                             variant="outlined"
                             label="Password" 
                             type="password"
@@ -124,7 +144,6 @@ const RegistrationForm = () => {
                         />
                         {errors.password && touched.password && <p style={{ color: "red" }}>{errors.password}</p>}
                         <TextField 
-                            id="outlined-basic" 
                             variant="outlined"
                             label="Confirm Password" 
                             type="password"
@@ -134,11 +153,17 @@ const RegistrationForm = () => {
                             onBlur={handleBlur}
                         />
                         {errors.confirmPassword && touched.confirmPassword && <p style={{ color: "red" }}>{errors.confirmPassword}</p>}
-                        <Button variant="outlined" type="submit" color="secondary">Register</Button>
+                        <Button variant="outlined" type="submit" color="primary">Register</Button>
+
+                        <Box display="flex" justifyContent="center" pt={2}>
+                            <Typography sx={{ width: "fit-content" }} color="primary">
+                                Already have an account? Login <Link to="/login" color="primary">Here</Link>
+                            </Typography>
+                        </Box>
                     </Stack>
-                </Grid>
-            </Grid>
-        </form>
+                </form>
+            </Box>
+        </Box>
     )
 }
 

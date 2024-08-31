@@ -22,6 +22,10 @@ const navigationItems = [
     {
         label: "History",
         route: NavigationEnum.records,
+    },
+    {
+        label: "Logout",
+        route: NavigationEnum.logout,
     }
 ]
 
