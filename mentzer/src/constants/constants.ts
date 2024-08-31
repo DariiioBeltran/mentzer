@@ -71,4 +71,5 @@ export const enum NavigationEnum {
     exercises = "exercises",
     records = "records",
     profile = "profile",
+    logout = "logout",
 }

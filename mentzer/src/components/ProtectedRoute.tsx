@@ -8,7 +8,7 @@ interface ProtectedRouteProps {
     children: ReactNode;
 }
 
-function ProtectedRoute({ children }: ProtectedRouteProps) {
+const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     const [isAuthorized, setIsAuthorized] = useState<boolean | null >(null);
 
     useEffect(() => {
@@ -36,8 +36,6 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
         if (!token) {
             setIsAuthorized(false);
             return
-        } else {
-            
         }
         const decoded = jwtDecode(token);
         const tokenExpiration = decoded.exp;
@@ -54,7 +52,11 @@ function ProtectedRoute({ children }: ProtectedRouteProps) {
         return <div>Loading...</div>
     }
 
-    return isAuthorized ? children : <Navigate to="/login" />
+    if (!isAuthorized) {
+        return <Navigate to="/login" />
+    }
+
+    return <>{children}</>
 }
 
 export default ProtectedRoute;
